@@ -123,6 +123,7 @@ import FAQSection from "src/components/FAQSection.vue"
 import PlatformInfo from "src/components/PlatformInfo.vue"
 import ToolLayout from "src/components/ToolLayout.vue"
 import { calculators } from "src/data/calculators"
+import { calculateMetrics, calculatePrice } from "src/utils/calculatorMath"
 
 const route = useRoute()
 
@@ -193,31 +194,19 @@ const sanitizedInputs = computed(() => ({
   feePercent: normalizeNumber(formState.value.feePercent)
 }))
 
-const recommendedPrice = computed(() => {
-  const { productCost, shipping, desiredProfit, feePercent } = sanitizedInputs.value
-
-  if (feePercent >= 100) {
-    return 0
-  }
-
-  return calculatePrice(productCost, shipping, desiredProfit, feePercent)
-})
-
-const marketplaceFeeValue = computed(() => recommendedPrice.value * (sanitizedInputs.value.feePercent / 100))
-const realizedProfit = computed(
-  () =>
-    recommendedPrice.value -
-    marketplaceFeeValue.value -
-    sanitizedInputs.value.productCost -
-    sanitizedInputs.value.shipping
+const metrics = computed(() =>
+  calculateMetrics({
+    cost: sanitizedInputs.value.productCost,
+    shipping: sanitizedInputs.value.shipping,
+    desiredProfit: sanitizedInputs.value.desiredProfit,
+    feePercent: sanitizedInputs.value.feePercent
+  })
 )
-const profitMargin = computed(() => {
-  if (recommendedPrice.value <= 0) {
-    return 0
-  }
 
-  return (realizedProfit.value / recommendedPrice.value) * 100
-})
+const recommendedPrice = computed(() => metrics.value.recommendedPrice)
+const marketplaceFeeValue = computed(() => metrics.value.marketplaceFeeValue)
+const realizedProfit = computed(() => metrics.value.realizedProfit)
+const profitMargin = computed(() => metrics.value.profitMargin)
 
 const resultRows = computed(() => {
   if (!submitted.value || recommendedPrice.value <= 0) {
@@ -302,11 +291,6 @@ useMeta(() => ({
 
 function handleSubmit () {
   submitted.value = true
-}
-
-function calculatePrice (cost, shipping, desiredProfit, feePercent) {
-  const fee = feePercent / 100
-  return (cost + shipping + desiredProfit) / (1 - fee)
 }
 
 function formatCurrency (value) {

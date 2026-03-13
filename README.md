@@ -1,76 +1,85 @@
-# 🚀 PriceZ
+# PriceZ
 
-Smart pricing calculators for marketplace sellers.
+PriceZ is a marketplace pricing calculator built for sellers who need fast margin and fee estimates before publishing products.
 
-PriceZ is a Quasar + Vue SPA focused on fee and pricing calculators for:
+This public repository reflects the original MVP version of the project.
+
+Live site: `https://pricezapp.com`
+
+## What PriceZ Does
+
+PriceZ helps estimate:
+- selling price
+- marketplace fees
+- expected profit margin
+
+Supported platforms in the MVP:
 - Mercado Livre
 - Shopee
 - Amazon
 - Etsy
 - Shopify
 
----
+## MVP Features
 
-## ✨ Features
-
-- Dynamic calculator route: `/calculators/:platform`
+- Marketplace calculator pages by platform
 - Reusable calculator UI components
-- Platform-specific info + FAQ
-- FAQ structured data (JSON-LD) on calculator pages
-- SEO-ready page structure
-- Shared site footer and clean responsive navigation
+- Platform-specific summaries and FAQs
+- Responsive layout
+- FAQ structured data on calculator pages
+- Basic SEO-ready page structure
 
----
+## Tech Stack
 
-## 🧰 Tech Stack
-
-- [Quasar](https://quasar.dev/) (Vue 3 + Vite)
+- [Quasar](https://quasar.dev/)
+- Vue 3
 - Vue Router
+- Vite
 - pnpm / npm
 
----
+## Quick Start
 
-## 🏁 Quick Start
-
-### Install dependencies
+Install dependencies:
 
 ```bash
 pnpm install
-# or
-npm install
 ```
 
-### Run in development mode
+Run locally:
 
 ```bash
 pnpm dev
-# or
-npm run dev
 ```
 
----
+Build for production:
 
-## 🗺️ Routes
+```bash
+pnpm build
+```
 
-Main pages:
-- `/`
-- `/about`
-- `/privacy-policy`
-- `/terms`
-- `/contact`
+## Routes
 
-Calculator page:
-- `/calculators/:platform`
+### Main pages:
 
-Compatibility redirects:
-- `/calculator/:platform` -> `/calculators/:platform`
-- `/terms-of-service` -> `/terms`
+- /
+- /about
+- /privacy-policy
+- /terms
+- /contact
 
----
+### Calculator page:
 
-## 🧩 Project Structure
+/calculators/:platform
 
-```text
+### Legacy redirects:
+
+- /calculator/:platform -> /calculators/:platform
+- /terms-of-service -> /terms
+
+
+
+## Project Structure
+
 src/
   components/
     CalculatorForm.vue
@@ -92,34 +101,20 @@ src/
     ContactPage.vue
     calculator/
       CalculatorPlatformPage.vue
-```
 
----
 
-## ➕ Adding a New Calculator Platform
+## Notes
 
-1. Open `src/data/calculators.js`
-2. Add a new platform object with:
-   - `slug`
-   - `name`
-   - `toolName`
-   - `summary`
-   - `marketplaceInfo` (`description`, `highlights`, optional `notice`)
-3. Done. The new platform automatically appears in:
-   - Navigation
-   - Home tools list
-   - Dynamic calculator page (`/calculators/{slug}`)
+- This repository is the public MVP snapshot of PriceZ.
+- The live product continued evolving after this version.
+- Marketplace fee policies change often, so values should always be validated against official platform documentation.
 
----
+## Live Product
+If you want to see the current public version of the app, visit:
 
-## 📝 Notes
+https://pricezapp.com
 
-- This repository is currently MVP-focused.
-- Contact email in the contact page is placeholder: `me@example.com`.
-- Fee policies change frequently; always validate against official marketplace docs.
+### Author
+Built by Lypzis.
 
----
 
-## ❤️ Author
-
-Built by **Lypzis**.

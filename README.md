@@ -4,7 +4,7 @@ PriceZ is a marketplace pricing calculator built for sellers who need fast margi
 
 This public repository reflects the original MVP version of the project.
 
-Live site: `https://pricezapp.com`
+Live site: [PriceZ](https://pricezapp.com)
 
 ## What PriceZ Does
 
@@ -75,33 +75,6 @@ pnpm build
 
 - /calculator/:platform -> /calculators/:platform
 - /terms-of-service -> /terms
-
-
-
-## Project Structure
-
-src/
-  components/
-    CalculatorForm.vue
-    CalculationResult.vue
-    ExampleCalculation.vue
-    FAQSection.vue
-    PlatformInfo.vue
-    SiteFooter.vue
-    ToolLayout.vue
-  data/
-    calculators.js
-  layouts/
-    MainLayout.vue
-  pages/
-    IndexPage.vue
-    AboutPage.vue
-    PrivacyPolicyPage.vue
-    TermsOfServicePage.vue
-    ContactPage.vue
-    calculator/
-      CalculatorPlatformPage.vue
-
 
 ## Notes
 
